@@ -10,7 +10,9 @@ import DemoPage from './components/DemoPage.jsx';
 render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute path="/" component={DemoPage} />
+      <IndexRoute component={SearchPage} />
+      <Route path="/album/:idAlbum" component={AlbumPage} />
+      <Route path="/artist/:idArtist" component={ArtistPage} />
 
       <Route path="*" component={NotFoundPage} />
     </Route>
