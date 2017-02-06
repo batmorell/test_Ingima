@@ -64,9 +64,9 @@ class ArtistPage extends React.Component {
             </div>
             <div className='col-xs-12 col-md-6 col-lg-6'>
               <ul className='list-group'>
-                {this.state.tracks.map(function(track) {
+                {this.state.tracks.map(function(track, index) {
                   return (
-                    <li className='list-group-item' key={track.id}>#. {track.name} <span className='badge'>{parseInt(track.duration_ms/60/1000) + ':' +  parseInt(track.duration_ms/1000%60) }</span></li>
+                    <li className='list-group-item' key={track.id}>{index + 1}. {track.name} <span className='badge'>{parseInt(track.duration_ms/60/1000) + ':' +  parseInt(track.duration_ms/1000%60) }</span></li>
                   );
                 })}
               </ul>

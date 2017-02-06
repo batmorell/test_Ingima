@@ -29,7 +29,8 @@ class SearchPage extends React.Component {
   };
 
   render() {
-    return (<div>
+    return (
+      <div>
       <div>
         <div className='container'>
           <div className='page-header'>
@@ -53,7 +54,7 @@ class SearchPage extends React.Component {
               <div key={artist.id} className='media'>
                 <div className='media-left'>
                   <a href={'/artist/' + artist.id}>
-                    <img className='media-object' src={this.state.artists[0].images[3].url} alt='*' />
+                    <img className='media-object' src={this.state.artists[0].images[3].url} alt='*' /> /*artist.image[3].url doesn't work here.*/
                   </a>
                 </div>
                 <div className='media-body'>
