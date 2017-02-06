@@ -5,7 +5,9 @@ import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import App from './components/App.jsx';
 
 import NotFoundPage from './components/NotFoundPage.jsx';
-import DemoPage from './components/DemoPage.jsx';
+import SearchPage from './components/SearchPage.jsx';
+import AlbumPage from './components/AlbumPage.jsx';
+import ArtistPage from './components/ArtistPage.jsx';
 
 render((
   <Router history={browserHistory}>

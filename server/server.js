@@ -10,9 +10,13 @@ const client = new Client();
 
 app.use(express.static(path.join( __dirname, '../public')));
 
-app.get('/api/search', function(req, res) {
+app.get('/api/search/:name', function(req, res) {
 
-  client.get("https://api.spotify.com/v1/search?q=tania%20bowra&type=artist", function (data, response) {
+  var request = "https://api.spotify.com/v1/search?q=" + req.params.name + "&type=artist";
+
+  console.log(request);
+
+  client.get(request, function (data, response) {
     res.json(data.artists);
   });
 
