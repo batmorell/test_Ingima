@@ -12,9 +12,7 @@ app.use(express.static(path.join( __dirname, '../public')));
 
 app.get('/api/search/:name', function(req, res) {
 
-  var request = "https://api.spotify.com/v1/search?q=" + req.params.name + "&type=artist";
-
-  console.log(request);
+  var request = "https://api.spotify.com/v1/search?q=" + encodeURIComponent(req.params.name.trim()) + "&type=artist";
 
   client.get(request, function (data, response) {
     res.json(data.artists);
