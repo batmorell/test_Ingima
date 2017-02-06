@@ -2,61 +2,61 @@ import React from 'react';
 
 var axios = require('axios');
 
-class ArtistPage extends React.Component {
+class AlbumPage extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      album: [],
-      tracks: [],
-      image: []
+      albums: []
     };
   }
 
   componentDidMount() {
-    this.getAlbum();
+    this.getAlbums();
   }
 
-  getAlbum(){
+  getAlbums(){
+
     var _this = this;
-    this.serverRequest =
-      axios
-        .get("http://localhost:3000/api/album/"+ this.props.params.idAlbum)
-        .then(function(result) {
-          _this.setState({
-            album: result.data,
-            tracks: result.data.tracks.items,
-            image: result.data.images
-          });
-        })
+    axios
+      .get("http://localhost:3000/api/artist/"+ this.props.params.idArtist )
+      .then(function(result) {
+        _this.setState({
+          albums: result.data.items
+        });
+      })
   };
 
   render() {
     return (
       <div>
+
         <div className='container'>
           <ol className='breadcrumb'>
             <li><a href='/'>Recherche</a></li>
-            <li><a href='#'>{ 'Artist' }</a></li>
-            <li className='active'>{ 'Album' }</li>
+            <li className='active'>{ 'Artist' }</li>
           </ol>
           <div className='page-header'>
-            <h1>Pistes</h1>
-            <h2>{this.state.album.name}</h2>
+            <h1>Albums</h1>
+            <h2>{ 'Artist' }</h2>
           </div>
-          <div className='row'>
-            <div className='col-xs-12 col-md-6 col-lg-6'>
-              <img src={this.state.image} className='thumbnail img-responsive' alt={ 'Album name' } />
-            </div>
-            <div className='col-xs-12 col-md-6 col-lg-6'>
-              <ul className='list-group'>
-                {this.state.tracks.map(function(track) {
-                  return (
-                    <li className='list-group-item' key={track.id}>#. {track.name} <span className='badge'>{track.duration_ms}</span></li>
-                  );
-                })}
-              </ul>
+          <div className='container albums'>
+            <div className='row'>
+              {this.state.albums.map(function(album) {
+                return (
+                  <div className='col-xs-12 col-sm-4 col-md-4 col-lg-3' key={album.id}>
+                    <div className='thumbnail text-center'>
+                      <a href={'/album/' + album.id}>
+                        <img src={album.images[1].url} alt={album.name} />
+                      </a>
+                      <div className='caption'>
+                        <h4>{album.name}</h4>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -66,4 +66,4 @@ class ArtistPage extends React.Component {
   }
 }
 
-export default ArtistPage;
+export default AlbumPage;
